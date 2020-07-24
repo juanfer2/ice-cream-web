@@ -1,18 +1,15 @@
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const NodemonWebPackPlugin = require('nodemon-webpack-plugin'); 
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
-  resolve: {
-    extensions: [".js", ".jsx", '.json', '*']
-  },
-  
   module: {
     rules: [
       {
@@ -37,17 +34,47 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|svg|jpg|gif|JPG)$/,
-        use: ['file-loader']
+        test: /\.(woff(2)?|ttf|eot|png|svg|jpg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
+      // Include less-loader (exact settings may deviate depending on your building/bundling procedure)
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: { javascriptEnabled: true },
+          },
+        ],
       },
       {
-        test: /\.(css|sass)$/,
-        issuer: {
-          exclude: /\.less$/,
-        },
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-      }
-    ]
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      // Define a second rule for only being used from less files
+      // This rule will only be used for converting our sass-variables to less-variables
+      {
+        test: /\.scss$/,
+      },
+    ],
   },
   plugins: [
     new HtmlWebPackPlugin({
@@ -55,35 +82,9 @@ module.exports = {
       favicon: path.resolve(__dirname, './public/favicon.ico'),
     }),
     new MiniCssExtractPlugin({
-      ignoreOrder: true
+      ignoreOrder: true,
     }),
-    new NodemonWebPackPlugin({
-      // If using more than one entry, you can specify
-      // which output file will be restarted.
-      script: './dist/server.js',
-  
-      // What to watch.
-      watch: path.resolve('./dist'),
-  
-      // Arguments to pass to the script being watched.
-      args: ['demo'],
-  
-      // Node arguments.
-      nodeArgs: ['--debug=9222'],
-  
-      // Files to ignore.
-      ignore: ['*.js.map'],
-  
-      // Extensions to watch.
-      ext: 'js,njk,json',
-      
-      // Unlike the cli option, delay here is in milliseconds (also note that it's a string).
-      // Here's 1 second delay:
-      delay: "1000",
-  
-      // Detailed log.
-      verbose: true, 
-    })
+    new Dotenv(),
   ],
   devtool: 'cheap-module-eval-source-map',
   devServer: {
