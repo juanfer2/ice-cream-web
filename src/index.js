@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -6,8 +6,15 @@ import './stylesSheets/main.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 ReactDOM.render(
-    <App />,
+  <Suspense fallback={"..."}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Suspense>,
   document.getElementById('root')
 );
 

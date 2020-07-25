@@ -15,7 +15,7 @@ function Home() {
           background: `url(${IceCream1})`
         }}>
         </div>
-          {/* <img className="banner_image" src={IceCream1} alt="icream1" /> */}
+          
         </div>
         
     </div>
