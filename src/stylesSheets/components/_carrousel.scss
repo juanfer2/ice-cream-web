@@ -1,0 +1,18 @@
+.carrousel{
+  background: green;
+}
+
+.image_container{
+  .image{
+    width: 100%;
+  }
+}
+
+.banner{
+  position: relative;
+  .banner_image{
+    height: 75vh;
+    background-size: cover;
+    background-position: center;
+  }
+}
