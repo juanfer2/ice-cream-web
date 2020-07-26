@@ -18,7 +18,7 @@ module.exports = {
   ],
   env: {
     test: {
-      presets: ['@babel/preset-env', '@babel/preset-react', 'react', 'es2016'],
+      presets: ['@babel/preset-env', '@babel/preset-react', 'react'],
       plugins: [
         '@babel/plugin-transform-runtime',
         '@babel/plugin-proposal-object-rest-spread',

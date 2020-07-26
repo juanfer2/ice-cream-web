@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-react": "^7.10.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -11,6 +14,7 @@
     "apollo-boost": "^0.4.9",
     "apollo-client-preset": "^1.0.8",
     "axios": "^0.19.2",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
     "css-loader": "^3.6.0",
@@ -47,7 +51,7 @@
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "react-scripts build",
     "dist": "webpack --mode=production",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "lint": "eslint ./",
     "prettier": "prettier --write ./**/*.js --staged"
@@ -68,6 +72,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-jest": "^26.1.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^7.5.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
@@ -76,12 +84,21 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.5",
+    "pretty-quick": "^2.0.1",
     "webpack-cli": "^3.3.12"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm test && pretty-quick --staged",
-      "pre-push": "npm run lint && npm test"
+      "pre-commit": "yarn run lint && pretty-quick --staged",
+      "pre-push": "yarn run lint"
+    }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/utils/mocks/fileMock.js"
     }
   }
 }

@@ -1,0 +1,24 @@
+.card_product {
+  background: white;
+  border-radius: 2px;
+  padding: 5%;
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.12), 0px 2px 10px rgba(0, 0, 0, 0.12);
+  &__image {
+    width: 50%;
+  }
+  &__content {
+    .price {
+      font-size: 20px;
+      color: black;
+    }
+    .more {
+      cursor: pointer;
+      font-size: 20px;
+      color: black;
+    }
+    gap: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,35 @@
+.card-shadow 
+    background: white
+    border-radius: 2px
+    padding: 5%
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.12), 0px 2px 10px rgba(0, 0, 0, 0.12)
+.card
+    margin-bottom: 5px
+    &__shadow
+        background: white
+        border-radius: 2px
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.12), 0px 2px 10px rgba(0, 0, 0, 0.12)
+    &__header
+        position: relative
+        display: grid
+        grid-template-columns: 1fr 1fr
+        padding: 7px
+        .actions_btns
+            text-align: right
+    &__image
+        width: 100%
+    &__actions
+        position: relative
+        display: grid
+        grid-template-columns: 1fr 1fr
+        padding: 12px
+        svg
+            margin-left:  15px
+        .action_save   
+            text-align: right
+    &__info     
+        padding: 12px
+        .like
+            font-size: 18px
+
+

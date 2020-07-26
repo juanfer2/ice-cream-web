@@ -1,25 +1,17 @@
-import React from "react";
+import React from 'react'
+
+import { products } from '../../store'
 /*Components */
-import Navbar from "../navbar/Navbar";
-import Carrousel from "../carrousel/Carrousel";
-import IceCream1 from "../../images/imagesCarrousel/ice_cream_1.jpg";
-import IceCream2 from "../../images/imagesCarrousel/ice_cream_2.jpg";
-import IceCream3 from "../../images/imagesCarrousel/ice_cream_3.jpg";
+import Navbar from '../navbar/Navbar'
+import ProductsList from '../productsList/ProductsList'
 
 function Home() {
   return (
     <div>
       <Navbar />
-        <div className="banner">
-        <div className="banner_image" style={{
-          background: `url(${IceCream1})`
-        }}>
-        </div>
-          
-        </div>
-        
+      <ProductsList products={products} />
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
