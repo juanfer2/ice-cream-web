@@ -130,4 +130,47 @@
 .success-gradient:hover {
   background-position: right center;
 }
+
+.car_item {
+  display: -ms-grid;
+  display: grid;
+  gap: 1em;
+  position: relative;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid black;
+}
+
+.car_item__container_image .item_image {
+  width: 50%;
+}
+
+.car_item__container_name {
+  position: relative;
+}
+
+.center_item {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.total {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.buy_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
 /*# sourceMappingURL=main.css.map */

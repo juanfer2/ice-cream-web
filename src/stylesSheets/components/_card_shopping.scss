@@ -1,0 +1,32 @@
+.car_item {
+  display: grid;
+  gap: 1em;
+  position: relative;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid black;
+  &__container_image {
+    .item_image {
+      width: 50%;
+    }
+  }
+  &__container_name {
+    position: relative;
+  }
+}
+
+.center_item {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buy_items {
+  display: flex;
+  justify-content: center;
+}

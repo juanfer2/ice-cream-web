@@ -1,8 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { showCardShopping } from '../../redux/actions/carShopping/carShopping'
 import Button from '../buttons/Button'
 
-function Cards({ title, price, image, onClickButton, onClickSeeMore }) {
+function Cards({ title, price, image, onClickSeeMore }) {
+  const dispatch = useDispatch()
+  const openModal = () => dispatch(showCardShopping())
+
   return (
     <div className="card_product">
       <img className="card_product__image" src={image} alt="" />
@@ -14,18 +19,11 @@ function Cards({ title, price, image, onClickButton, onClickSeeMore }) {
         <span className="more" onClick={onClickSeeMore}>
           MAS INFORMACIÓN {'>'}
         </span>
-        {/* <Button
-        type={'success'}
-        type_btn={'button'}
-        is_gradient={true}
-        >
-          Agregar
-        </Button> */}
         <Button
           type={'success'}
           type_btn={'button'}
           is_gradient={true}
-          onClick={onClickButton}
+          onClick={() => openModal()}
         >
           Agregar
         </Button>
@@ -38,7 +36,6 @@ Cards.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.string,
   image: PropTypes.string,
-  onClickButton: PropTypes.any,
   onClickSeeMore: PropTypes.any,
 }
 

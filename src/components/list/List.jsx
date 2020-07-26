@@ -6,7 +6,7 @@ function List({ children }) {
 }
 
 List.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.any,
 }
 
 export default List
