@@ -12,7 +12,13 @@ function CarShoppingModal() {
   const { show } = state.carShopping
 
   return (
-    <Modal title="Basic Modal" visible={show} onCancel={() => closeModal()}>
+    <Modal
+      title="Carrito de compra"
+      visible={show}
+      onCancel={() => closeModal()}
+      footer={null}
+      width={950}
+    >
       <CarShopping />
     </Modal>
   )

@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { showCardShopping } from '../../redux/actions/carShopping/carShopping'
+import { addProductCarShopping } from '../../redux/actions/carShopping/carShopping'
 import Button from '../buttons/Button'
 
-function Cards({ title, price, image, onClickSeeMore }) {
+function Cards({ id, title, price, image, onClickSeeMore }) {
   const dispatch = useDispatch()
-  const openModal = () => dispatch(showCardShopping())
+  const product = {
+    id,
+    name: title,
+    price,
+    imageUrl: image,
+    count: 1,
+  }
+  const addToCar = (product) => dispatch(addProductCarShopping(product))
 
   return (
     <div className="card_product">
@@ -23,7 +30,7 @@ function Cards({ title, price, image, onClickSeeMore }) {
           type={'success'}
           type_btn={'button'}
           is_gradient={true}
-          onClick={() => openModal()}
+          onClick={() => addToCar(product)}
         >
           Agregar
         </Button>
@@ -33,6 +40,7 @@ function Cards({ title, price, image, onClickSeeMore }) {
 }
 
 Cards.propTypes = {
+  id: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.string,
   image: PropTypes.string,
