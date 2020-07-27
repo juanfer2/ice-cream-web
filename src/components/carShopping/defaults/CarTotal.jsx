@@ -1,15 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-function CarTotal(props) {
+function CarTotal() {
+  const state = useSelector((state) => state)
+  const { totalPrice } = state.carShopping
   return (
     <div className="total">
       <p>Total</p>
-      <p>$19.500</p>
+      <p>{totalPrice}</p>
     </div>
   )
 }
-
-CarTotal.propTypes = {}
 
 export default CarTotal

@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import milk from '../../../images/products/leche.jpg'
-
 function CarItem({ product }) {
   return (
     <div>

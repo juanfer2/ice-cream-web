@@ -8,6 +8,8 @@ import { isEmpty } from 'lodash'
 const initialState = {
   show: false,
   products: [],
+  totalPrice: null,
+  countProducts: null,
 }
 
 export default function (state = initialState, action) {
@@ -28,27 +30,54 @@ export default function (state = initialState, action) {
     return [null, null]
   }
 
+  const addProductsToCar = (newProduct) => {
+    const [element, index] = findProduct(newProduct)
+    if (!isEmpty(element)) {
+      state.products.slice(index, 1)
+      const intitalProduct = state.products
+      countProducts(intitalProduct, true)
+      return {
+        ...state,
+        products: state.products,
+        count: state.count,
+        show: true,
+      }
+    }
+    const intitalProduct = [...state.products, newProduct]
+
+    countProducts(intitalProduct)
+    return {
+      ...state,
+      products: [...state.products, newProduct],
+      count: state.count,
+      show: true,
+    }
+  }
+
+  const countProducts = (listProducts) => {
+    state.count = 0
+    state.totalPrice = 0
+    listProducts.map((product) => {
+      console.log('product')
+      console.log(product)
+      state.count = product.count + state.count
+      state.totalPrice = product.price + state.totalPrice
+    })
+
+    if (state.products.length === 0) {
+      state.count = action.payload.count + state.count
+      state.totalPrice = action.payload.price + state.totalPrice
+    }
+  }
+
   switch (action.type) {
     case SHOW_MODAL_CAR_SHOPPING:
       return { ...state, show: true }
     case HIDEN_MODAL_CAR_SHOPPING:
       return { ...state, show: false }
     case ADD_PRODUCT_TO_CAR: {
-      const [element, index] = findProduct(action.payload)
-
-      if (!isEmpty(element)) {
-        state.products.slice(index, 1)
-        return {
-          ...state,
-          products: state.products,
-          show: true,
-        }
-      }
-      return {
-        ...state,
-        products: [...state.products, action.payload],
-        show: true,
-      }
+      const newState = addProductsToCar(action.payload)
+      return newState
     }
     default:
       return state
